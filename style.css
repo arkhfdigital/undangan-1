@@ -1,0 +1,80 @@
+@media (min-width: 768px) {
+  .content-wrapper {
+    background: linear-gradient(
+    to bottom right,
+    rgba(255, 240, 245, 0.9),
+    rgba(240, 255, 245, 0.6)
+  );
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: 40px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  }
+  .carousel-container {
+    max-width: 360px;
+  }
+}
+#pengantin {
+  padding: 40px 20px;
+  background-color: rgba(255, 255, 255, 0.85);
+  margin-top: 40px;
+  border-radius: 12px;
+}
+
+#pengantin h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+#pengantin h4 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#pengantin h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #a58c63;
+}
+.foto-pengantin {
+  width: 60%;
+  max-width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 12px;
+}
+
+/* Responsif: agak lebih besar di layar desktop */
+@media (min-width: 768px) {
+  .foto-pengantin {
+    width: 600px;
+  }
+}
+.love-story {
+  background: linear-gradient(to bottom, #fff7f2, #fff);
+  border-radius: 16px;
+  padding: 30px 20px;
+  margin-top: 50px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.love-story:hover {
+  transform: scale(1.01);
+}
+
+.love-step {
+  margin-bottom: 24px;
+}
+
+.love-step h5 {
+  font-weight: 600;
+  color: #cc6e6e;
+}
+
+.love-step p {
+  line-height: 1.6;
+  color: #555;
+}
