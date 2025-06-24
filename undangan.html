@@ -102,6 +102,16 @@
         margin-bottom: 24px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
       }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1.8s ease;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
     </style>
   </head>
   <body>
@@ -145,7 +155,7 @@
           menyelenggarakan akad dan resepsi pernikahan putra-putri kami:
         </p>
 
-        <div class="mt-4">
+        <div class="mt-4 reveal">
           <img
             src="./img/cowok-1.jpg"
             alt="Foto Putra"
@@ -159,7 +169,7 @@
           <h2>&</h2>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4 reveal">
           <img
             src="./img/cewek-1.jpg"
             alt="Foto Putri"
@@ -169,7 +179,7 @@
           <p>Putri dari Bapak Fuad & Ibu Mulyani</p>
         </div>
 
-        <div class="mt-5" style="max-width: 600px; margin: 0 auto">
+        <div class="mt-5 reveal" style="max-width: 600px; margin: 0 auto">
           <h3 style="font-weight: bold">📅 Jadwal Acara</h3>
           <div id="countdown"></div>
           <a
@@ -180,7 +190,7 @@
             📅 Tambahkan ke kalender
           </a>
 
-          <div class="jadwal-kartu">
+          <div class="jadwal-kartu reveal">
             <h5 class="mb-2">🕌 AKAD NIKAH</h5>
             <p class="mb-1">
               <strong>Hari, Tanggal:</strong> Jumat, 4 April 2026
@@ -197,7 +207,7 @@
             >
           </div>
 
-          <div class="jadwal-kartu">
+          <div class="jadwal-kartu reveal">
             <h5 class="mb-2">🎉 RESEPSI</h5>
             <p class="mb-1">
               <strong>Hari, Tanggal:</strong> Jumat, 4 April 2026
@@ -215,7 +225,7 @@
           </div>
         </div>
         <div class="mt-5">
-          <div class="love-story">
+          <div class="love-story reveal">
             <h3 class="text-center mb-4" style="font-weight: bold">
               💖 Love Story
             </h3>
@@ -248,7 +258,7 @@
             </div>
           </div>
         </div>
-        <div class="section mt-5">
+        <div class="section mt-5 reveal">
           <h3 class="mb-4" style="font-weight: bold">💌 Ucapan & Kehadiran</h3>
 
           <div class="row justify-content-center">
@@ -366,6 +376,80 @@
 
           this.reset();
         });
+    </script>
+    <audio id="bgMusic" loop>
+      <source
+        src="./audio/Banda Neira - Sampai Jadi Debu - Peaceful Piano.mp3"
+        type="audio/mpeg"
+      />
+      Browser tidak mendukung pemutar audio.
+    </audio>
+
+    <button
+      id="toggleMusic"
+      class="btn btn-light shadow d-flex align-items-center gap-2 rounded-pill position-fixed"
+      style="
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+        padding: 10px 18px;
+        font-weight: 500;
+      "
+    >
+      <span id="musicIcon">🔊</span>
+      <span id="musicLabel">Jeda Musik</span>
+    </button>
+    <script>
+      const bgMusic = document.getElementById("bgMusic");
+      const toggleBtn = document.getElementById("toggleMusic");
+      const icon = document.getElementById("musicIcon");
+      const label = document.getElementById("musicLabel");
+      let isPlaying = false;
+
+      // Putar otomatis saat ada interaksi pertama
+      window.addEventListener(
+        "click",
+        () => {
+          if (!isPlaying) {
+            bgMusic.play();
+            isPlaying = true;
+          }
+        },
+        { once: true }
+      );
+
+      toggleBtn.addEventListener("click", () => {
+        if (bgMusic.paused) {
+          bgMusic.play();
+          icon.textContent = "🔊";
+          label.textContent = "Jeda Musik";
+        } else {
+          bgMusic.pause();
+          icon.textContent = "🔇";
+          label.textContent = "Putar Musik";
+        }
+      });
+    </script>
+    <script>
+      const reveals = document.querySelectorAll(".reveal");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target); // animasi hanya sekali
+            }
+          });
+        },
+        {
+          threshold: 0.2, // animasi muncul saat 20% elemen terlihat
+        }
+      );
+
+      reveals.forEach((el) => {
+        observer.observe(el);
+      });
     </script>
   </body>
 </html>
